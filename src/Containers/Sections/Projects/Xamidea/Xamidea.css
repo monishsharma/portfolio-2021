@@ -1,0 +1,64 @@
+.xamidea__Section {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project__image {
+  position: relative;
+}
+.projects__row {
+  /* margin: 100px auto; */
+}
+.span {
+  font-size: 1rem;
+  /* font-family: "Sofia PRO"; */
+  line-height: 1.3em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.first__heading {
+  color: #ffbb4d;
+  margin-right: 1.25rem;
+}
+.second__heading {
+  color: #ed1f27;
+}
+
+.project__heading {
+  margin: 0.75rem 0 1.75rem;
+  font-weight: 600;
+  font-size: 3rem;
+  color: #ffffff;
+  line-height: 1.3em;
+}
+
+.project__Detail {
+  font-size: 1rem;
+  line-height: 2.5em;
+  color: #ffffff;
+}
+
+.check {
+  margin: 4.5rem 0;
+  color: white;
+  font-weight: 600;
+
+  transition: color .45s ease-in-out;
+}
+
+.aboutApp:hover {
+    cursor: pointer;
+}
+
+.aboutApp:hover .check {
+    cursor: pointer;
+  color: #ffbb4d;
+  font-weight: 600;
+
+
+}

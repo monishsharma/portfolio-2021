@@ -1,0 +1,247 @@
+.navbar__custom__container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.navbar__custom {
+  position: relative;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 1 !important;
+}
+
+.navbar__top,
+.navbar__bottom,
+.navbar__middle {
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  display: block;
+  height: 2px;
+  width: 16px;
+  border-radius: 6px;
+  background-color: white;
+  position: absolute;
+  display: block;
+}
+
+.navbar__top {
+  top: 0;
+}
+
+.navbar__middle {
+  width: 24px;
+  top: 8px;
+}
+
+.navbar__bottom {
+  bottom: 0;
+}
+
+.navbar__content__container {
+  background-color: #141414;
+  position: fixed;
+  left: 0;
+  z-index: 11;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  clip-path: circle(0px at 4rem 50%);
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s ease-out;
+}
+
+.navbar__content__container.open {
+  clip-path: circle(150vw at 4rem 50%);
+}
+
+.navbar__content__container.open.mainNav__right {
+  display: none !important;
+}
+
+.navbar__custom.opens div:nth-child(2) {
+  position: relative;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.navbar__custom.opens div:nth-child(3) {
+  position: relative;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  width: 24px;
+  bottom: -6px;
+}
+
+.navbar__custom.opens div:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+.menu__body {
+  padding: 100px;
+  margin: 0 auto;
+  height: 500px;
+}
+
+.container {
+  /* height: 100% !important; */
+}
+
+.mainNav__left {
+  align-items: flex-start;
+}
+
+.mainNav__left,
+.mainNav__right {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mainNav__right {
+  align-items: flex-end;
+}
+
+.mainNav__link__main {
+  margin-bottom: 1.5rem;
+  text-decoration: none !important;
+  color: white;
+  opacity: 0.3;
+  font-size: 4rem;
+  transition: opacity 0.1s ease, color 0.1s ease;
+}
+
+.mainNav__link__main:hover {
+  text-decoration: none;
+  opacity: 1;
+  color: white;
+}
+
+.mainNav__link__main.active {
+  opacity: 1;
+}
+
+.contact {
+  margin-top: 2.5rem;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.mainNav__link__social {
+  padding: 8px 0 8px 8px;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: white;
+  opacity: 0.3;
+  transition: opacity 0.1s ease, color 0.1s ease;
+  font-family: "Satisfy";
+}
+
+.mainNav__link__social:hover {
+  text-decoration: none;
+  opacity: 1;
+  color: white;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.logo {
+  color: white;
+  font-family: "Satisfy";
+  font-size: 34px;
+}
+.email {
+  font-size: 20px;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  text-decoration: none;
+}
+.email:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  opacity: 0.7;
+}
+.portfolio__btn {
+  position: relative;
+  border: 0.125rem solid white;
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+  cursor: pointer;
+}
+.portfolio__btn:hover {
+  background-color: white;
+  color: black;
+}
+.overlay__sides {
+  margin: 3.125rem 0;
+
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  height: calc(100vh - 6.25rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.overlay__left {
+  left: 3.125rem;
+  align-items: flex-start;
+  z-index: 200;
+  z-index: 12;
+}
+
+.overlay__right {
+  right: 3.125rem;
+  align-items: flex-end;
+  z-index: 200;
+  z-index: 1;
+}
+
+@media screen and (max-width: 991px) {
+  .portfolio__btn {
+    right: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .mainNav__link__main {
+    font-size: 3rem;
+  }
+  .navbar__content__container {
+    clip-path: circle(0px at 2rem 5%);
+  }
+  .logo {
+    font-size: 24px;
+  }
+  .portfolio__btn {
+    /* padding: 0; */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mainNav__right {
+    display: none;
+  }
+}
