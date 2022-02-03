@@ -1,20 +1,39 @@
-import React, { useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import "./Navbar.css";
-import fullpage from "fullpage.js";
+import { useHistory } from "react-router-dom";
+import gmail from "../../Assets/images/gmail.png"
 
-function Navbar(props) {
+function Navbar({
+  toggleNavConnect
+}) {
+  const history = useHistory();
   const hamburger = useRef();
   const refContainer = useRef();
   const [nav, setNav] = useState(false);
-  const [menuItem, setmenuItem] = useState([
-    "Home",
-    "About",
-    "Experience",
-    "Work",
-    "Contact",
-  ]);
-  const [social, setsocial] = useState([
+  const menuItem = [
+    {
+      title: "Home",
+      path: "/"
+    },
+    {
+      title: "About",
+      path: "/about"
+    },
+    {
+      title: "Experience",
+      path: "/experience"
+    },
+    {
+      title: "Work",
+      path: "/work"
+    },
+    {
+      title: "Contact",
+      path: "/contact"
+    }
+  ];
+  const social = [
     {
       name: "Github",
       link: "",
@@ -31,14 +50,42 @@ function Navbar(props) {
       name: "Facebook",
       link: "",
     },
-  ]);
+  ];
+
+  useEffect(() => {
+    const navigation =  document.querySelector('#fp-nav');
+    if (navigation) {
+      if (nav) {
+        navigation.classList.add('hide'); 
+      } else  {
+        navigation.classList.remove('hide');
+      }
+    window.fullpage_api.setAllowScrolling(!nav);
+
+    }
+    
+  }, [nav])
 
   const toogleNav = () => {
-    localStorage.setItem('nav',!nav)
-    setNav(!nav);
+    const navigation =  document.querySelector('#fp-nav');
+    const toggleNav = !nav;
+    setNav(toggleNav);
+    toggleNavConnect(toggleNav);
+    if (navigation) window.fullpage_api.setAllowScrolling(nav);
     refContainer.current.classList.toggle("open");
     hamburger.current.classList.toggle("opens");
   };
+
+  const moveDown = () => {
+    window.fullpage_api.moveSectionDown();
+  }
+
+  const goToRoute = (item) => {
+    refContainer.current.classList.toggle("open");
+    setNav(!nav);
+    hamburger.current.classList.toggle("opens");
+    history.push(item.path);
+  }
 
   return (
     <React.Fragment>
@@ -56,8 +103,7 @@ function Navbar(props) {
         </div>
         <div className="overlay__sides overlay__right">
           <button className="portfolio__btn">Hire Me</button>
-
-          <img src="https://d33wubrfki0l68.cloudfront.net/7e3b3a9d2728197688f3806d355398381d1711d6/cd9a0/images/arrowdown.6c6ed776250c7dbb606fedcb1512036b.svg" />
+          <img alt ="m" onClick={moveDown} src="https://d33wubrfki0l68.cloudfront.net/7e3b3a9d2728197688f3806d355398381d1711d6/cd9a0/images/arrowdown.6c6ed776250c7dbb606fedcb1512036b.svg" />
         </div>
         <div className="navbar__content__container" ref={refContainer}>
           <div className="container">
@@ -66,8 +112,8 @@ function Navbar(props) {
                 <React.Fragment>
                   {menuItem.map((item, index) => {
                     return (
-                      <a className="mainNav__link__main" href="">
-                        {item}
+                      <a onClick={() => goToRoute(item)} key={index} className="mainNav__link__main" >
+                        {item.title}
                       </a>
                     );
                   })}
@@ -77,6 +123,7 @@ function Navbar(props) {
                 {social.map((item, index) => {
                   return (
                     <a
+                      rel="noreferrer"
                       href={item.link}
                       target="_blank"
                       className="mainNav__link__social"

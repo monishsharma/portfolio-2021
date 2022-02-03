@@ -1,82 +1,54 @@
-import fullpage from "fullpage.js";
-import { gsap, TimelineMax, TweenMax, Power3, Linear } from "gsap";
+import { gsap, TimelineMax } from "gsap";
+import { Power0 } from "gsap/gsap-core";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const tl = new TimelineMax();
+gsap.registerPlugin(ScrollTrigger);
 
-const headingAnimation = (element, firstTime) => {
+
+export const drawSvgText = () => {
+    gsap.to('#theText', {duration: 1, drawSVG:0,strokeDashoffset: 0, yoyo:true});
+}
+
+export const parallaxScrolling = ({element, duration, from, to}) => {
+  
   tl.fromTo(
     element,
-    0.5,
+    duration,
     {
-      y: -100,
-      duration: 0.2,
-      // delay: 0.3,
-      opacity: 0,
-      ease: Power3.easeOut,
+      ...from
     },
     {
-      y: 10,
-      duration: 0.2,
-      // delay: 0.3,
-      opacity: 1,
-      ease: Power3.easeOut,
+      ...to
     }
   );
 };
 
-const textToPath = (element) => {
-  var tl = new TimelineMax({ yoyo: true });
-  tl.fromTo(
-    element,
-    3,
-    { strokeDashoffset: 100, ease: Linear.easeNone },
-    { strokeDashoffset: 0, ease: Linear.easeNone }
-  );
-};
+export const onScrollParallax = ({element, animation, trigger = null}) => {
 
-export const initFullpage = () => {
-  new fullpage("#fullpage", {
-    licenseKey: "YOUR KEY HERE",
-    navigation: true,
-    disable: false,
-    afterSlideLoad : (origin, destination, direction) => {
-      console.log(origin, destination, direction)
-    },
-    onLeave: (origin, destination, direction) => {
-      const section = destination.item;
-      let title = section.querySelectorAll(".reveal__heading");
-      let bg = section.querySelector("#text-copy1");
-
-      // if (destination.index === 2) {
-      //   let laptop = section.querySelector("#laptop");
-      //   parallaxScrolling(laptop);
-      // }
-      // console.log(bg);
-
-      title.forEach((tit, index) => headingAnimation(tit, false));
-      textToPath(bg);
-    },
+  gsap.to(element, {
+      ...animation,
+      ease: Power0.ease,
+      ...(trigger) ? {...trigger} : {
+        scrollTrigger: {
+        scrub: true
+    }}
   });
-};
+}
 
-export const initGSAP = (element) => {
-  gsap.registerPlugin(ScrollTrigger);
-  headingAnimation(element, true);
-  textToPath()
-};
+export const initProjectDetailAnimation = ({ element, delay = 0, duration = 0.5, animation = null }) => {
+  const tl = new TimelineMax();
+  if (animation) {
+      tl.fromTo(element, duration, ...animation).delay(delay);
+  } else {
+      tl.fromTo(element, duration, {
+          scale: 5,
+          opacity: 0
+      }, {
+          scale: 1,
+          opacity: 1
+      }).delay(delay);
+  }
+}
 
-export const parallaxScrolling = (element) => {
-  tl.fromTo(
-    element,
-    {
-      opacity: 0,
-      y: 400,
-    },
-    {
-      y: 0,
-      opacity: 1,
-    },
-    "<.15"
-  );
-};
+

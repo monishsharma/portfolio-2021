@@ -1,15 +1,29 @@
+import { Power3 } from "gsap";
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-import { initFullpage, initGSAP } from "../../../utils/animation";
+import { initProjectDetailAnimation, parallaxScrolling } from "../../../utils/animation";
 
 import './Landing.css';
 
-function Landing() {
+function Landing({
+  section
+}) {
 
   const text = React.useRef();
 
   useEffect(() => {
-    initGSAP(text.current);
+        initProjectDetailAnimation({
+          element: text.current,
+          duration: 1,
+          animation: [
+            {
+              scale: 0
+            },
+            {
+              scale: 1
+            }
+          ]
+        })
   }, [])
 
   return (

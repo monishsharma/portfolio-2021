@@ -54,7 +54,7 @@
   clip-path: circle(0px at 4rem 50%);
   width: 100vw;
   height: 100vh;
-  transition: all 1s ease-out;
+  transition: all 1s ease-in-out;
 }
 
 .navbar__content__container.open {
@@ -62,7 +62,7 @@
 }
 
 .navbar__content__container.open.mainNav__right {
-  display: none !important;
+  /* display: none !important; */
 }
 
 .navbar__custom.opens div:nth-child(2) {
@@ -217,6 +217,10 @@
   align-items: flex-end;
   z-index: 200;
   z-index: 1;
+}
+
+.overlay__right img:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 991px) {

@@ -1,28 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { drawSvgText } from "../../utils/animation"
+
 import "./TextToPath.css";
 
-function TextToPath(props) {
+function TextToPath({
+  heading,
+  text,
+  style
+}) {
+
+  useEffect(() => {
+    drawSvgText();
+  }, [])
+  
   return (
-    <svg>
-      <symbol id="text-copy">
-        <text
-          transform="translate(100 50)"
-          stroke-dasharray="100%"
-          stroke-dashoffset="100%"
-          id="text-copy1"
-          text-anchor="middle"
-          x="50%"
-          y="50%"
-          class="text--line"
-        >
-          {props.text}
-        </text>
-      </symbol>
-      <g class="g-ants">
-        <use href="#text-copy" class="text-copy" id="outline"></use>
-        <use href="#text-copy" class="text-copy" id="fill"></use>
-      </g>
-    </svg>
+    <React.Fragment>
+        <div class="text-wrapper">
+          <svg id="demo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="100%" height="250" >
+            <text x="50%" y="50%" dy=".35em" text-anchor="middle" style={{...style}}>
+             {text}
+          </text>
+          </svg>
+        </div>
+    </React.Fragment>
+
   );
 }
 

@@ -1,44 +1,78 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import "./Xamidea.css";
 
 import X from "../../../../Assets/images/Xamidea/X.png";
-import LOGO from "../../../../Assets/images/Xamidea/logo.png";
-import cap from "../../../../Assets/images/Xamidea/cap.png";
 import laptop from "../../../../Assets/images/Xamidea/laptop.png";
 import { parallaxScrolling } from '../../../../utils/animation'
 
-function Xamidea() {
+function Xamidea({
+  section
+}) {
+  const REFS = React.useRef([]);
   const [images, setimages] = useState([
     {
       src: X,
-      width: "60%",
-      id: "X",
-      top: 0,
-      right: "-26%",
+      id: "logo",
+      style: {
+        maxWidth: "100%",
+        top: 0,
+        right: "0%",
+        height: "100%"
+      }
     },
     {
       src: laptop,
-      width: "100%",
       id: "laptop",
-      bottom: "18%",
-      right: "-8%",
-    },
-    {
-      src: cap,
-      width: "50%",
-      id: "cap",
-      top: "-10%",
-      left: 0,
-    },
+      animation: true,
+      style: {
+        maxWidth: "100%",
+        right: "-15%",
+        maxHeight: "100%",
+        bottom: "18%",
+
+      }
+    }
   ]);
-  const x = React.useRef(null);
+
 
   React.useEffect(() => {
-    parallaxScrolling(x.current)
-  }, [x])
+    const isSecondSection = section && parseInt(section.destination.index) === 2;
+    if (isSecondSection && parseInt(section.origin.index) < parseInt(section.destination.index)) {
+      parallaxScrolling({
+        element: REFS.current.laptop,
+        duration: .9,
+        from:  {
+          opacity: 0,
+          y: 400,
+        },
+        to: {
+          y: 0,
+          opacity: 1,
+        },
+      })
+    }
+
+    if (isSecondSection && parseInt(section.origin.index) > parseInt(section.destination.index)) {
+      parallaxScrolling({
+        element: REFS.current.laptop,
+        duration: .9,
+        from:  {
+          opacity: 0,
+          y: -400,
+        },
+        to: {
+          y: 0,
+          opacity: 1,
+        },
+      })
+    }
+
+
+
+  }, [section])
   return (
-    <div className="xamidea__Section" ref = {x}>
+    <div className="xamidea__Section">
       <div className="container">
         <Row className="projects__row">
           <Col xs={{ span: 6 }} className="aboutApp">
@@ -58,9 +92,6 @@ function Xamidea() {
               for exams by providing hand-picked questions and solutions
               strictly in accordance with the CBSE syllabus.
             </span>
-            <div className="reveal__heading" style={{ margin: "1.5rem 0" }}>
-              <img src={LOGO} style={{ width: "25%", height: "50%" }} />
-            </div>
             <div className="reveal__heading check">Check it out</div>
           </Col>
           <Col xl={{ span: 6 }} xs={6} className="project__image">
@@ -68,16 +99,12 @@ function Xamidea() {
               {images.map((img, index) => {
                 return (
                   <img
+                    ref={(el) => { REFS.current[img.id] = el; }}
+                    key={index}
+                    alt="xamidea"
                     id={img.id}
                     src={img.src}
-                    style={{
-                      width: img.width,
-                      position: "absolute",
-                      top: img.top,
-                      right: img.right,
-                      bottom: img.bottom,
-                    }}
-                    alt="image"
+                    style={{...img.style, position: "absolute"}}
                   />
                 );
               })}

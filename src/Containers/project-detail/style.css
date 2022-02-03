@@ -1,0 +1,89 @@
+.covidContainer {
+    height: 200vh;
+    color: white;
+    width: 100%;
+    margin: 9.375rem 0;
+    font-family: "Poppins", sans-serif;
+}
+.projectChallenge {
+    height: 100%;
+}
+.text-lineBefore {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.text-lineBefore:before {
+    position: absolute;
+    left: -2.375rem;
+    content: "";
+    width: 1.875rem;
+    height: 0.0625rem;
+    background-color: #4b4b4d;
+}
+.spanColor {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b4b4d;
+    text-transform: uppercase;
+}
+.challenegHeading {
+    font-weight: 600;
+    margin: 0.625rem 0 1.875rem;
+    font-size: 2.2rem;
+}
+.break {
+    width: 2.5rem;
+    height: 0.25rem;
+    border: transparent;
+    margin: 0;
+}
+.challengeP {
+    margin-top: 2.5rem;
+    font-size: 1.125rem;
+    line-height: 1.8em;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+.challenge__clientInfo {
+    margin: 0.75rem 0 1.875rem;
+    font-size: 1rem;
+    line-height: 1.7em;
+    font-size: 400;
+}
+.sources {
+    color: white;
+}
+.sources:hover{
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    opacity: 0.7;
+}
+.prjectChallenge_images {
+    margin: 5.625rem 5.625rem 7.5rem;
+}
+.challenge__imageHolder {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.prjectChallenge_images img {
+    border-radius: 25px;
+}
+.prjectChallenge_images img:nth-child(1) {
+    width: calc(70% - 2rem);
+    margin-right: 4rem;
+}
+.prjectChallenge_images img:nth-child(2) {
+    width: calc(30% - 2rem);
+    margin-bottom: 2.25rem;
+}
+
+.service__list {
+    list-style-type: none;
+    padding-left: 0;
+}
+.service__list > li {
+    line-height: 2rem;
+}
