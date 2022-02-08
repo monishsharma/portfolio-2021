@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import "./index.css";
 import TextToPath from '../TextToPath/TextToPath';
 import { useParams } from "react-router-dom";
-import { PROJECTS } from '../../Containers/pages/work/selector';
 import { initProjectDetailAnimation, onScrollParallax } from '../../utils/animation';
 import SmoothScroll from '../smooth-scroll';
+import { getSelectedProject } from '../../utils/get-selected-project';
 
 
 
@@ -16,11 +16,7 @@ const ProjectDetails = () => {
 
     useEffect(() => {
         if (id) {
-            PROJECTS.map(project => {
-                if (project.key === id) {
-                    setSelectedProject(project);
-                }
-            })
+            setSelectedProject(getSelectedProject(id));
         }
     }, [id]);
 
@@ -69,9 +65,14 @@ const ProjectDetails = () => {
             });
             onScrollParallax({
                 element: ".project_heading h1",
-                animation: {
-                    y: -1000
-                }
+                animation: [
+                    {
+                        y: 0
+                    },
+                    {
+                        y: -1000
+                    }
+                ]
             });
         }
     }, [selectedProject])
@@ -108,7 +109,6 @@ const ProjectDetails = () => {
                     </div>
                 </div>
                 <selectedProject.component selectedProject={selectedProject} />
-
             </div>
         </SmoothScroll>
     )

@@ -11,6 +11,8 @@ function Navbar({
   const hamburger = useRef();
   const refContainer = useRef();
   const [nav, setNav] = useState(false);
+  const [isActive, setisActive] = useState(false);
+
   const menuItem = [
     {
       title: "Home",
@@ -87,6 +89,19 @@ function Navbar({
     history.push(item.path);
   }
 
+  const getActiveClass = (item) => {
+    let className = "mainNav__link__main";
+    if (item && history.location.pathname === item.path) {
+      className = "mainNav__link__main active";
+    }
+    if (item && item.title === "Work") {
+      if (history.location.pathname.includes(item.path)) {
+        className = "mainNav__link__main active";
+      }
+    }
+    return className;
+  }
+
   return (
     <React.Fragment>
       <div className="nav__container">
@@ -112,7 +127,7 @@ function Navbar({
                 <React.Fragment>
                   {menuItem.map((item, index) => {
                     return (
-                      <a onClick={() => goToRoute(item)} key={index} className="mainNav__link__main" >
+                      <a onClick={() => goToRoute(item)} key={index} className={getActiveClass(item)} >
                         {item.title}
                       </a>
                     );

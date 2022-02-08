@@ -8,6 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/index";
 // import routes from "./routes";
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -15,7 +16,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+      {
+        isMobile ? <h1>mobile</h1> : <App />
+      }
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

@@ -25,15 +25,27 @@ export const parallaxScrolling = ({element, duration, from, to}) => {
 };
 
 export const onScrollParallax = ({element, animation, trigger = null}) => {
+  console.log(animation)
 
-  gsap.to(element, {
-      ...animation,
-      ease: Power0.ease,
-      ...(trigger) ? {...trigger} : {
-        scrollTrigger: {
-        scrub: true
-    }}
-  });
+  gsap.timeline({
+    ...(trigger) ? {...trigger} : {scrollTrigger: { 
+        start:'top top', 
+        end:'bottom bottom', 
+        scrub:1
+      }}
+  })
+    .fromTo(element, ...animation, 0)
+
+  // gsap.timeline(element, {
+  //     ...animation,
+  //     markers: true,
+  //     ease: Power0.ease,
+  //     ...(trigger) ? {...trigger} : {
+  //       scrollTrigger: {
+  //       scrub: true,
+  //       markers: true
+  //   }}
+  // });
 }
 
 export const initProjectDetailAnimation = ({ element, delay = 0, duration = 0.5, animation = null }) => {
