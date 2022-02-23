@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { PROJECTS } from '../Containers/pages/work/selector';
 
 export const getSelectedProject = (id) => {

@@ -1,8 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./Navbar.css";
 import { useHistory } from "react-router-dom";
-import gmail from "../../Assets/images/gmail.png"
 
 function Navbar({
   toggleNavConnect
@@ -11,7 +11,6 @@ function Navbar({
   const hamburger = useRef();
   const refContainer = useRef();
   const [nav, setNav] = useState(false);
-  const [isActive, setisActive] = useState(false);
 
   const menuItem = [
     {
@@ -20,11 +19,13 @@ function Navbar({
     },
     {
       title: "About",
-      path: "/about"
+      scroll: true,
+      scrollIndex: 2
     },
     {
       title: "Experience",
-      path: "/experience"
+      scroll: true,
+      scrollIndex: 3    
     },
     {
       title: "Work",
@@ -32,7 +33,9 @@ function Navbar({
     },
     {
       title: "Contact",
-      path: "/contact"
+      scroll: true,
+      scrollIndex: 4
+      
     }
   ];
   const social = [
@@ -86,17 +89,28 @@ function Navbar({
     refContainer.current.classList.toggle("open");
     setNav(!nav);
     hamburger.current.classList.toggle("opens");
-    history.push(item.path);
+    if (item.scroll) {
+      window.fullpage_api.moveTo(item.scrollIndex);
+    } else {
+      history.push(item.path);
+    }
   }
 
   const getActiveClass = (item) => {
     let className = "mainNav__link__main";
-    if (item && history.location.pathname === item.path) {
-      className = "mainNav__link__main active";
-    }
-    if (item && item.title === "Work") {
-      if (history.location.pathname.includes(item.path)) {
+    if (item.scroll && window && window.fullpage_api && !history.location.pathname.includes("/work")) {
+      const activeSlide = window.fullpage_api.getActiveSection();
+      if ((activeSlide.index + 1) === item.scrollIndex) {
         className = "mainNav__link__main active";
+      }
+    } else {
+      // if (item && history.location.pathname === item.path) {
+      //   className = "mainNav__link__main active";
+      // }
+      if (item && item.title === "Work") {
+        if (history.location.pathname.includes(item.path)) {
+          className = "mainNav__link__main active";
+        }
       }
     }
     return className;

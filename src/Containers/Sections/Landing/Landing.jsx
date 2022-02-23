@@ -1,13 +1,10 @@
-import { Power3 } from "gsap";
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-import { initProjectDetailAnimation, parallaxScrolling } from "../../../utils/animation";
+import { initProjectDetailAnimation } from "../../../utils/animation";
 
 import './Landing.css';
 
-function Landing({
-  section
-}) {
+function Landing() {
 
   const text = React.useRef();
 

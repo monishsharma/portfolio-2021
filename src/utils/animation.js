@@ -1,5 +1,4 @@
 import { gsap, TimelineMax } from "gsap";
-import { Power0 } from "gsap/gsap-core";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const tl = new TimelineMax();

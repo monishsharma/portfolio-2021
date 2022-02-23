@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useRef, useState } from 'react';
 import "./index.css";
 import TextToPath from '../TextToPath/TextToPath';

@@ -44,18 +44,6 @@ function SectionView() {
           );
         }}
       />
-
-      {/* <div id="fullpage">
-        <div class="section">
-          <Landing />
-        </div>
-        <div class="section">
-          <About />
-        </div>
-        <div class="section">
-          <Xamidea />
-        </div>
-      </div> */}
     </React.Fragment>
   );
 }

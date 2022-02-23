@@ -32,6 +32,7 @@ const SmoothScroll = ({ children }) => {
   // 5.
   useEffect(() => {
     requestAnimationFrame(() => smoothScrollingHandler());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const smoothScrollingHandler = () => {

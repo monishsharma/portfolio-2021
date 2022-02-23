@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import "./About.css";
 
 // IMAGES //
@@ -15,10 +15,9 @@ import sass from "../../../Assets/images/stacks/sass.png";
 // END //
 
 import { Col, Row } from "react-bootstrap";
-import TextToPath from "../../../Components/TextToPath/TextToPath";
 
 function About() {
-  const [skills, setSkills] = useState([
+  const skills = [
     { img: html, title: "HTML" },
     { img: css, title: "css" },
     { img: JS, title: "JS" },
@@ -27,7 +26,7 @@ function About() {
     { img: vue, title: "vue" },
     { img: redux, title: "redux" },
     { img: sass, title: "sass" },
-  ]);
+  ];
 
   return (
     <React.Fragment>

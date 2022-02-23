@@ -1,8 +1,6 @@
 import Covid from "../../../Assets/images/projects/covid.png";
-import Github from "../../../Assets/images/projects/github.png";
+import keep from "../../../Assets/images/projects/keep.png";
 import PortfolioV2 from "../../../Assets/images/projects/a.png";
-import  Laptop from "../../../Assets/images/Xamidea/laptop.png";
-import  E1 from "../../../Assets/images/f.png";
 import covid19 from '../../../Assets/images/projects/covid.png'
 // import ProjectSectionDetail from "../../project-in-depth/detail";
 import Desktop from "../../../Assets/images/projects/v1/desktop.png"
@@ -200,11 +198,11 @@ export const PROJECTS = [
         path: "google-keep-clone",
         key: "google-keep-clone",
         code: "",
-        img: Github,
+        img: keep,
         text: "Keep Clone",
         bgColor: "#F3B400",
         shiftYaxis: false,
-        position: "center",
+        position: "bottom",
         size: "contain",
         letterSpacing: "2px",
         component: PortfolioV2Component,

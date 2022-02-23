@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { Row, Col } from "react-bootstrap";
 import "./Xamidea.css";
 
@@ -10,7 +10,7 @@ function Xamidea({
   section
 }) {
   const REFS = React.useRef([]);
-  const [images, setimages] = useState([
+  const images = [
     {
       src: X,
       id: "logo",
@@ -33,7 +33,7 @@ function Xamidea({
 
       }
     }
-  ]);
+  ];
 
 
   React.useEffect(() => {
