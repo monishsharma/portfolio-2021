@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import "./work.css";
-import TextToPath from "../../../Components/TextToPath/TextToPath";
-import { gsap, Power3 } from "gsap";
-import { PROJECTS } from "./selector";
-import ProjectCard from "../../../Components/projects-card";
+import TextToPath from "../../Components/TextToPath/TextToPath";
+import { PROJECTS } from "../../constant/projects";
+import ProjectCard from "../../Components/projects-card";
 import { Container } from "react-bootstrap";
-import SmoothScroll from "../../../Components/smooth-scroll";
+import SmoothScroll from "../../Components/smooth-scroll";
+import { bottomToTopAnimation } from "./animation";
 
 const Work = () => {
 
@@ -13,22 +13,7 @@ const Work = () => {
 
     useEffect(() => {
         const element = ref.current;
-        if (element) {
-            gsap.fromTo(
-                element,
-                2,
-                {
-                    opacity: 0,
-                    y: 300,
-                    ease: Power3.easeOut,
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: Power3.easeOut,
-                }
-            );
-        }
+        bottomToTopAnimation(element);
     }, [ref])
 
 
