@@ -12,7 +12,7 @@ function PortfolioV2Component({
             {
             selectedProject && 
                 <>
-                    <ProjectChallenge key={"challenges"} selectedProject={selectedProject} />
+                    <ProjectChallenge  selectedProject={selectedProject} />
                 </>
             }
         </React.Fragment>

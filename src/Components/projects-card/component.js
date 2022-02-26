@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 
 const ProjectCard = ({
     index,
-    project,
-    ...props
+    project
 }) => {
 
 
@@ -39,7 +38,6 @@ const ProjectCard = ({
             }}
             onMouseEnter={(e) => onHoverHandler(e, index, true)}
             onMouseLeave={(e) => onHoverHandler(e, index, false)}
-        // onClick={() => goToDetailsPage(project)}
         >
             <h4>
                 {project.title}

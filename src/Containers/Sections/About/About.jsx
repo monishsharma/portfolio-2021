@@ -56,7 +56,6 @@ function About() {
                   <div className="stack reveal__heading">
                     {skills.map((img, index) => {
                       return (
-                        <React.Fragment>
                           <img
                             src={img.img}
                             alt={img.title}
@@ -64,7 +63,6 @@ function About() {
                             title={img.title}
                             className="stack__img"
                           />
-                        </React.Fragment>
                       );
                     })}
                   </div>

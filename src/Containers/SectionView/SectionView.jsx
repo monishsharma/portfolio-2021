@@ -6,10 +6,13 @@ import Xamidea from "../Sections/Projects/Xamidea/Xamidea";
 import ReactFullpage from '@fullpage/react-fullpage';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 
 
 
-function SectionView() {
+function SectionView({
+  history
+}) {
 
   const [nextSection, setnextSection] = useState(null);
 
@@ -20,24 +23,32 @@ function SectionView() {
     });
   }
 
+  React.useEffect(() => {
+    const scrollIndex = history.location.scrollIndex;
+    if (scrollIndex) {
+      window.fullpage_api.moveTo(scrollIndex);
+    }
+  }, [history]);
+
   return (
     <React.Fragment>
       <ReactFullpage
+      anchors={["", "about", "experience"]}
         navigation={true}
         licenseKey={'YOUR_KEY_HERE'}
         scrollingSpeed={1000} /* Options here */
-        lockAnchors={true}
+        // lockAnchors={true}
         onLeave={onLeave}
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              <div class="section">
+              <div className="section">
                 <Landing section = {nextSection} />
               </div>
-              <div class="section">
+              <div className="section">
                 <About />
               </div>
-              <div class="section">
+              <div className="section">
                 <Xamidea section = {nextSection} />
               </div>
             </ReactFullpage.Wrapper>
@@ -58,4 +69,4 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(SectionView);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SectionView));

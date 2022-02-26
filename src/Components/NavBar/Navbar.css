@@ -54,16 +54,13 @@
   clip-path: circle(0px at 4rem 50%);
   width: 100vw;
   height: 100vh;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .navbar__content__container.open {
   clip-path: circle(150vw at 4rem 50%);
 }
 
-.navbar__content__container.open.mainNav__right {
-  /* display: none !important; */
-}
 
 .navbar__custom.opens div:nth-child(2) {
   position: relative;
@@ -95,9 +92,6 @@
   height: 500px;
 }
 
-.container {
-  /* height: 100% !important; */
-}
 
 .mainNav__left {
   align-items: flex-start;
@@ -238,9 +232,6 @@
   }
   .logo {
     font-size: 24px;
-  }
-  .portfolio__btn {
-    /* padding: 0; */
   }
 }
 

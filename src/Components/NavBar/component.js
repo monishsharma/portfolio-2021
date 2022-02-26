@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import "./Navbar.css";
 import { useHistory } from "react-router-dom";
+import { getActiveSlide, menuItem, social, scrollDownImg } from "./selector";
 
 function Navbar({
   toggleNavConnect
@@ -11,106 +12,87 @@ function Navbar({
   const hamburger = useRef();
   const refContainer = useRef();
   const [nav, setNav] = useState(false);
-
-  const menuItem = [
-    {
-      title: "Home",
-      path: "/"
-    },
-    {
-      title: "About",
-      scroll: true,
-      scrollIndex: 2
-    },
-    {
-      title: "Experience",
-      scroll: true,
-      scrollIndex: 3    
-    },
-    {
-      title: "Work",
-      path: "/work"
-    },
-    {
-      title: "Contact",
-      scroll: true,
-      scrollIndex: 4
-      
-    }
-  ];
-  const social = [
-    {
-      name: "Github",
-      link: "",
-    },
-    {
-      name: "Linkden",
-      link: "",
-    },
-    {
-      name: "Twitter",
-      link: "",
-    },
-    {
-      name: "Facebook",
-      link: "",
-    },
-  ];
+  const isScrollIndexPresent = Object.keys(history.location).includes("scrollIndex");
 
   useEffect(() => {
-    const navigation =  document.querySelector('#fp-nav');
+    const navigation = document.querySelector('#fp-nav');
     if (navigation) {
       if (nav) {
-        navigation.classList.add('hide'); 
-      } else  {
+        navigation.classList.add('hide');
+      } else {
         navigation.classList.remove('hide');
       }
-    window.fullpage_api.setAllowScrolling(!nav);
+      window.fullpage_api.setAllowScrolling(!nav);
 
     }
-    
+
   }, [nav])
 
+  const toggleHamburger = () => hamburger.current.classList.toggle("opens");
+  const toggleNavbar = () => refContainer.current.classList.toggle("open");
+
   const toogleNav = () => {
-    const navigation =  document.querySelector('#fp-nav');
+    const navigation = document.querySelector('#fp-nav');
     const toggleNav = !nav;
     setNav(toggleNav);
     toggleNavConnect(toggleNav);
     if (navigation) window.fullpage_api.setAllowScrolling(nav);
-    refContainer.current.classList.toggle("open");
-    hamburger.current.classList.toggle("opens");
+    toggleNavbar();
+    toggleHamburger();
   };
 
   const moveDown = () => {
     window.fullpage_api.moveSectionDown();
   }
 
-  const goToRoute = (item) => {
-    refContainer.current.classList.toggle("open");
-    setNav(!nav);
-    hamburger.current.classList.toggle("opens");
-    if (item.scroll) {
-      window.fullpage_api.moveTo(item.scrollIndex);
+  const toggleScrollAndPush = (item) => {
+    if (history.location.pathname.includes("/work")) {
+      if (item.scroll) {
+        history.push({
+          pathname: "/",
+          scrollIndex: item.scrollIndex
+        })
+      } else {
+        history.push("/");
+      }
     } else {
-      history.push(item.path);
+      if (item.scroll) {
+        window.fullpage_api.moveTo(item.scrollIndex);
+      } else {
+        if (history.location.hash) {
+          if (item.title === "Work") {
+            history.push(item.path);
+          } else {
+            window.fullpage_api.moveTo(1);
+          }
+        } else {
+          history.push(item.path);
+        }
+      }
     }
+  }
+  const goToRoute = (item) => {
+    toggleNavbar();
+    setNav(!nav);
+    toggleHamburger();
+    toggleScrollAndPush(item)
   }
 
   const getActiveClass = (item) => {
     let className = "mainNav__link__main";
-    if (item.scroll && window && window.fullpage_api && !history.location.pathname.includes("/work")) {
-      const activeSlide = window.fullpage_api.getActiveSection();
-      if ((activeSlide.index + 1) === item.scrollIndex) {
+    if (item.scroll && history.location.pathname === "/" && !isScrollIndexPresent) {
+      if (item.hash === history.location.hash) {
         className = "mainNav__link__main active";
       }
     } else {
-      // if (item && history.location.pathname === item.path) {
-      //   className = "mainNav__link__main active";
-      // }
       if (item && item.title === "Work") {
         if (history.location.pathname.includes(item.path)) {
           className = "mainNav__link__main active";
         }
+      }
+      console.log(history)
+      if (history.location.pathname === "/" && item.hash === history.location.hash) {
+        className = "mainNav__link__main active";
       }
     }
     return className;
@@ -132,7 +114,7 @@ function Navbar({
         </div>
         <div className="overlay__sides overlay__right">
           <button className="portfolio__btn">Hire Me</button>
-          <img alt ="m" onClick={moveDown} src="https://d33wubrfki0l68.cloudfront.net/7e3b3a9d2728197688f3806d355398381d1711d6/cd9a0/images/arrowdown.6c6ed776250c7dbb606fedcb1512036b.svg" />
+          <img alt="m" onClick={moveDown} src={scrollDownImg} />
         </div>
         <div className="navbar__content__container" ref={refContainer}>
           <div className="container">
@@ -152,6 +134,7 @@ function Navbar({
                 {social.map((item, index) => {
                   return (
                     <a
+                      key={index}
                       rel="noreferrer"
                       href={item.link}
                       target="_blank"
