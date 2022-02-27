@@ -5,10 +5,6 @@ const tl = new TimelineMax();
 gsap.registerPlugin(ScrollTrigger);
 
 
-export const drawSvgText = () => {
-    gsap.to('#theText', {duration: 1, drawSVG:0,strokeDashoffset: 0, yoyo:true});
-}
-
 export const parallaxScrolling = ({element, duration, from, to}) => {
   
   tl.fromTo(
@@ -24,7 +20,6 @@ export const parallaxScrolling = ({element, duration, from, to}) => {
 };
 
 export const onScrollParallax = ({element, animation, trigger = null}) => {
-  console.log(animation)
 
   gsap.timeline({
     ...(trigger) ? {...trigger} : {scrollTrigger: { 

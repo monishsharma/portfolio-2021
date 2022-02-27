@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import { PROJECTS } from '../Containers/pages/work/selector';
+import { PROJECTS } from '../constant/projects';
 
 export const getSelectedProject = (id) => {
     let selectedProject = null ;

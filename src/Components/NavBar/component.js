@@ -53,7 +53,7 @@ function Navbar({
           scrollIndex: item.scrollIndex
         })
       } else {
-        history.push("/");
+        history.push(item.path)
       }
     } else {
       if (item.scroll) {
@@ -90,7 +90,6 @@ function Navbar({
           className = "mainNav__link__main active";
         }
       }
-      console.log(history)
       if (history.location.pathname === "/" && item.hash === history.location.hash) {
         className = "mainNav__link__main active";
       }

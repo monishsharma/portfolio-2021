@@ -122,6 +122,7 @@
   text-decoration: none;
   opacity: 1;
   color: white;
+  cursor: pointer;
 }
 
 .mainNav__link__main.active {

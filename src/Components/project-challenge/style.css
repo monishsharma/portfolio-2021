@@ -1,3 +1,6 @@
+:root{
+    --hover-color: white;
+}
 .covidContainer {
     height: 100vh;
     color: white;
@@ -60,9 +63,7 @@
     color: white;
     opacity: 0.7;
 }
-.prjectChallenge_images {
-    margin: 8.625rem 5.625rem 7.5rem;
-}
+
 .challenge__imageHolder {
     /* display: flex; */
     justify-content: space-between;
@@ -86,4 +87,55 @@
 }
 .service__list > li {
     line-height: 2rem;
+}
+.next_project {
+    background-color: #141416;
+    display: flex;
+    align-items: center;
+    padding: 8.75rem 0 10rem;
+    margin-top: 9.3125rem;
+}
+.nav__holder {
+    display: flex;
+    justify-content: space-between;
+}
+.prev {
+    width: calc(50% - 4.0625rem);
+    text-decoration: none;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: 50%;
+    height: 175px;
+}
+.prev:hover {
+    cursor: pointer;
+}
+.prev:hover .checkitout{
+    cursor: pointer;
+    color: var(--hover-color);
+}
+.text-label{
+    font-size: .75rem;
+    line-height: 1.3em;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.nav__h2{
+    margin: 0.8125rem 0 1.125rem;
+
+    font-size: 2.625rem;
+}
+.checkitout {
+    text-decoration: none;
+    border: 0;
+    padding: 0;
+    transition: color .1s ease-in-out;
+    display: inline-block;
+    overflow: visible;
+    cursor: pointer;
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    padding: 0.25em 0.375em;
 }

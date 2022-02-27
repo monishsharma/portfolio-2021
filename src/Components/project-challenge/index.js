@@ -1,49 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import { getPrevNextProj } from './selector';
 import "./style.css";
-import { onScrollParallax } from '../../utils/animation';
 
 
 function ProjectChallenge({
+    history,
     selectedProject
 }) {
 
-    useEffect(() => {
-        onScrollParallax({
-            element: "#img1",
-            animation: [
-                {
-                    y: 0
-                },
-                {
-                    y: -200
-                }
-            ],
-            trigger: {
-                scrollTrigger: {
-                    trigger: ".projectChallenge",
-                    scrub: true,
-                }
-            }
-        });
-        onScrollParallax({
-            element: "#img2",
-            animation: [
-                {
-                    y: 0
-                },
-                {
-                    y: -200
-                }
-            ],
-            trigger: {
-                scrollTrigger: {
-                    trigger: ".projectChallenge",
-                    scrub: true
-                }
-            }
-        });
-    }, [])
+    const element = useRef(null);
+    const { prevProject, nextProject } = getPrevNextProj(selectedProject);
 
     const showText = (text) => {
         let component;
@@ -56,7 +24,7 @@ function ProjectChallenge({
             component = <ul className="service__list">
                 {
                     splittedText.map((txt, index) => (
-                        <li className="service__list">{txt}</li>
+                        <li key={index} className="service__list">{txt}</li>
                     ))
                 }
             </ul>
@@ -66,8 +34,7 @@ function ProjectChallenge({
     }
 
     const LeftColumnn = () => {
-        console.log(selectedProject.details)
-        return  (
+        return (
             <Col xs={{ span: 6, offset: 1 }}>
                 <span className="text-label text-lineBefore spanColor">
                     {selectedProject.details.challenges.label}
@@ -80,7 +47,7 @@ function ProjectChallenge({
                     {selectedProject.details.challenges.para}
                 </p>
             </Col>
-        ) 
+        )
     }
 
     const rightColumn = () => {
@@ -88,7 +55,7 @@ function ProjectChallenge({
             <Col xs={{ span: 3, offset: 1 }}>
                 {
                     selectedProject.details.challenges.projectSource.map((source, index) => (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                             <span className="text-label  spanColor">
                                 {source.subTitle}
                             </span>
@@ -107,9 +74,13 @@ function ProjectChallenge({
                 }
 
             </Col>
-        ) 
+        )
     }
 
+
+const onClickHandler = (item) => {
+    history.replace(`/work/${item.path}`)
+}
     return (
         <div className="covidContainer">
             <div className="projectChallenge">
@@ -129,19 +100,36 @@ function ProjectChallenge({
                             <Col xs={{ span: 10, offset: 1 }} className="challenge__imageHolder">
                                 {
                                     selectedProject.details.challenges.sectionImages.map((images, idx) => (
-                                        <img id={images.id} src={images.img} alt="map" style={{...images.style}} />
+                                        <img key={idx} id={images.id} src={images.img} alt="map" style={{ ...images.style }} />
                                     ))
                                 }
-                                {/* <img id="img1" src={Map} alt="map" />
-                                <img id="img2" src={allCases} alt="allCases" /> */}
                             </Col>
                         </Row>
                     </Container>
-                </section>}
 
+                </section>}
             </div>
+            <div className="next_project">
+                <Container>
+                    <Row>
+                        <Col sm={{span: 10, offset:1}} className="nav__holder">
+                                <div ref={element} className="prev" style={{backgroundImage: `url(${prevProject.img})`}} onClick={() => onClickHandler(prevProject)} >
+                                    <span className="text-brand text-label" style={{color: prevProject.bgColor}}>Back to</span>
+                                    <h2 className="nav__h2">{prevProject.title}</h2>
+                                    <button className="checkitout">Check it out</button>
+                                </div>
+                                <div ref={element} className="prev next" style={{backgroundImage: `url(${nextProject.img})`}} onClick={() => onClickHandler(nextProject)} >
+                                    <span className="text-brand text-label" style={{color: nextProject.bgColor}}>Up Next</span>
+                                    <h2 className="nav__h2">{nextProject.title}</h2>
+                                    <button className="checkitout">Check it out</button>
+                                </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
         </div>
     )
 }
 
-export default ProjectChallenge;
+export default withRouter(ProjectChallenge);

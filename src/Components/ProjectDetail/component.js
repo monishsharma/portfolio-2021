@@ -90,10 +90,9 @@ const ProjectDetails = () => {
                     <div className="project_images">
                         {
                             selectedProject.projectImages.map((proj, index) => (
-                                <React.Fragment>
+                                <React.Fragment key={index}>
                                     <img
                                         id={`img_${proj.id}`}
-                                        key={index}
                                         src={proj.image}
                                         alt={proj.title}
                                         style={{ ...proj.style }}

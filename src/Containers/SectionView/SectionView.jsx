@@ -7,6 +7,7 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
+import Experience from "../Sections/experience";
 
 
 
@@ -49,7 +50,7 @@ function SectionView({
                 <About />
               </div>
               <div className="section">
-                <Xamidea section = {nextSection} />
+                <Experience section = {nextSection} />
               </div>
             </ReactFullpage.Wrapper>
           );

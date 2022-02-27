@@ -1,23 +1,23 @@
 /**
  * Images
  */
-import Covid from "../../Assets/images/projects/covid.png";
-import keep from "../../Assets/images/projects/keep.png";
-import PortfolioV2 from "../../Assets/images/projects/a.png";
-import covid19 from '../../Assets/images/projects/covid.png'
-import Desktop from "../../Assets/images/projects/v1/desktop.png"
-import msite from "../../Assets/images/projects/v1/msite.png"
-import Map from "../../Assets/images/projects/covid/map.png";
-import allCases from "../../Assets/images/projects/covid/allcases.png";
-import CovidTracker from "../../Containers/project-in-depth/covid-tracker";
-import keepLaptop from "../../Assets/images/projects/keep-clone/keep-laptop.png"
-import keppMobile from "../../Assets/images/projects/keep-clone/mobilelogin.png"
-import mobilenote from "../../Assets/images/projects/keep-clone/mobilenote.png"
-import landingd from "../../Assets/images/projects/v1/lanndingd.png";
-import landingm1 from "../../Assets/images/projects/v1/landinngm1.png";
-import landingm2 from "../../Assets/images/projects/v1/landingm2.png";
-import loggedin from "../../Assets/images/projects/keep-clone/loggedin.png";
-import loggedinm from "../../Assets/images/projects/keep-clone/loggedinm.png";
+import Covid from "../Assets/images/projects/covid.png";
+import keep from "../Assets/images/projects/keep.png";
+import PortfolioV2 from "../Assets/images/projects/a.png";
+import covid19 from '../Assets/images/projects/covid.png'
+import Desktop from "../Assets/images/projects/v1/desktop.png"
+import msite from "../Assets/images/projects/v1/msite.png"
+import Map from "../Assets/images/projects/covid/map.png";
+import allCases from "../Assets/images/projects/covid/allcases.png";
+import CovidTracker from "../Containers/project-in-depth/covid-tracker";
+import keepLaptop from "../Assets/images/projects/keep-clone/keep-laptop.png"
+import keppMobile from "../Assets/images/projects/keep-clone/mobilelogin.png"
+import mobilenote from "../Assets/images/projects/keep-clone/mobilenote.png"
+import landingd from "../Assets/images/projects/v1/lanndingd.png";
+import landingm1 from "../Assets/images/projects/v1/landinngm1.png";
+import landingm2 from "../Assets/images/projects/v1/landingm2.png";
+import loggedin from "../Assets/images/projects/keep-clone/loggedin.png";
+import loggedinm from "../Assets/images/projects/keep-clone/loggedinm.png";
 /**
  * components
  */
@@ -28,6 +28,7 @@ export const PROJECTS = [
     
     {
         title: "Covid-19 Tracker",
+        index: 0,
         path: "covid-19-tracker",
         key: "covid-19-tracker",
         code: "",
@@ -96,6 +97,7 @@ export const PROJECTS = [
     },
     {
         title: "Portfolio V1",
+        index: 1,
         path: "portfolio-v1",
         key: "portfolio-v1",
         code: "",
@@ -201,6 +203,7 @@ export const PROJECTS = [
     },
     {
         title: "Google Keep Clone",
+        index: 2,
         path: "google-keep-clone",
         key: "google-keep-clone",
         code: "",

@@ -1,0 +1,68 @@
+:root {
+    --color-surface: #8892b0;
+    --active-tab-color: #EF6E0C;
+}
+.wrapper{
+    height: 100vh;
+}
+
+.experience__container {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30% 0;
+}
+.nav-link.active {
+    background-color: var(--active-tab-color) !important;
+    opacity: 1!important;
+    color: white;
+}
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff!important;
+    font-size: 18px!important;
+}
+.CompanyName {
+    color: #ccd6f6;
+}
+.CompanyName, .CompanyName span {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.CompanyName, .CompanyName span {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.years {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: .05em;
+    color: #8892b0;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.learntList {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    width: 100%;
+    font-size: 17px;
+    color: #8892b0;
+}
+.learnt li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+.learntList:before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--color-surface);
+    font-size: 20px;
+    line-height: 28px;
+}
